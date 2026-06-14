@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/navbar.css";
-import { Link } from "react-router-dom";
 
 function Navbar({ search, setSearch }) {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar">
       <h1 className="logo">Movie App</h1>
@@ -13,10 +15,9 @@ function Navbar({ search, setSearch }) {
         onChange={(e) => setSearch(e.target.value)}
         className="search"
       />
-      <div>
-        {" "}
-        <Link to="/watchlist">Watchlist</Link>
-      </div>
+      <button className="watchlist-btn" onClick={() => navigate("/watchlist")}>
+        Watchlist
+      </button>
     </nav>
   );
 }
