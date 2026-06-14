@@ -5,6 +5,7 @@ import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
 import Watchlist from "./pages/Watchlist";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { WatchlistProvider } from "./context/WatchvistContext";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -26,10 +27,8 @@ function App() {
     fetchMovie();
   }, []);
 
-  const filterMovie = movies.filter((movie)=>
-    movie.name 
-          .toLowerCase()
-          .includes(search.toLocaleLowerCase())
+  const filterMovie = movies.filter((movie) =>
+    movie.name.toLowerCase().includes(search.toLocaleLowerCase()),
   );
 
   if (loading) {
@@ -38,19 +37,25 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="container">
-        <Navbar search={search} setSearch={setSearch} />
+      <WatchlistProvider>
+        <div className="container">
+          <Navbar search={search} setSearch={setSearch} />
 
-        <div className="movie-grid">
-          {filterMovie.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <div className="movie-grid">
+                  {filterMovie.map((movie) => (
+                    <MovieCard key={movie.id} movie={movie} />
+                  ))}
+                </div>
+              }
+            />
+            <Route path="/watchlist" element={<Watchlist />} />
+          </Routes>
         </div>
-      </div>
-
-      <Routes>
-        <Route path="/watchlist" element={<Watchlist />} />
-      </Routes>
+      </WatchlistProvider>
     </BrowserRouter>
   );
 }

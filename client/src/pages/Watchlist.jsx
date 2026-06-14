@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { WatchlistContext } from "../context/WatchvistContext";
 import MovieCard from "../components/MovieCard";
 
-export default function watchlist() {
+export default function Watchlist() {
   const { watchlist, removeFromWatchlist } = useContext(WatchlistContext);
 
   return (
@@ -12,11 +12,11 @@ export default function watchlist() {
 
       <div className="grid">
         {watchlist.map((movie) => (
-          <div key={movie.id}>
-            <MovieCard movie={movie} />
+          <div key={movie.id} className="watchlist-item">
+            <MovieCard movie={movie} showAddButton={false} />
             <button
               onClick={() => removeFromWatchlist(movie.id)}
-              style={{ marginTop: "10px" }}
+              className="remove-button"
             >
               Remove
             </button>

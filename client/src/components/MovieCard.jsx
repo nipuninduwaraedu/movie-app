@@ -1,8 +1,11 @@
-import React from "react";
-import "../Styles/card.css"
-import "../App.css"
+import React, { useContext } from "react";
+import "../Styles/card.css";
+import "../App.css";
+import { WatchlistContext } from "../context/WatchvistContext";
 
-function MovieCard({ movie }) {
+function MovieCard({ movie, showAddButton = true }) {
+  const { addToWatchlist } = useContext(WatchlistContext);
+
   return (
     <div className="card">
       <img src={movie.image?.medium} alt={movie.name} />
@@ -15,9 +18,11 @@ function MovieCard({ movie }) {
 
       <p>Language: {movie.language}</p>
 
-      <button onClick={()=> addToWatchlist(movie)}>
-        Add To Watchlist 
-      </button>
+      {showAddButton && (
+        <button className="card-button" onClick={() => addToWatchlist(movie)}>
+          Add To Watchlist
+        </button>
+      )}
     </div>
   );
 }
