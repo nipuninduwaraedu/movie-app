@@ -6,7 +6,7 @@
 
 ## 📌 Live Demo
 
-> _Deploy your app and paste the link here (e.g. Vercel / Netlify)_
+https://movie-app-6tto-eight.vercel.app/
 
 ---
 
@@ -150,7 +150,6 @@ http://localhost:5173/
 
 **Nipun Induwara**
 
----
 
 ---
 
