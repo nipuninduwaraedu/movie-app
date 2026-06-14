@@ -14,6 +14,10 @@ function MovieCard({ movie }) {
       <p>Rating: {movie.rating?.average ?? "N/A"}</p>
 
       <p>Language: {movie.language}</p>
+
+      <button onClick={()=> addToWatchlist(movie)}>
+        Add To Watchlist 
+      </button>
     </div>
   );
 }
