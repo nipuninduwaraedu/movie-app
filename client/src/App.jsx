@@ -3,6 +3,8 @@ import axios from "axios";
 import "./Styles/Home.css";
 import MovieCard from "./components/MovieCard";
 import Navbar from "./components/Navbar";
+import Watchlist from "./pages/Watchlist";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -35,15 +37,21 @@ function App() {
   }
 
   return (
-    <div className="container">
-      <Navbar search={search} setSearch={setSearch} />
+    <BrowserRouter>
+      <div className="container">
+        <Navbar search={search} setSearch={setSearch} />
 
-      <div className="movie-grid">
-        {filterMovie.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+        <div className="movie-grid">
+          {filterMovie.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))}
+        </div>
       </div>
-    </div>
+
+      <Routes>
+        <Route path="/watchlist" element={<Watchlist />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
